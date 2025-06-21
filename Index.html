@@ -1,0 +1,99 @@
+<!DOCTYPE html><html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>OI</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background-color: #000;
+      color: #39ff14;
+      font-family: 'Courier New', monospace;
+      text-align: center;
+      padding-top: 100px;
+    }#container {
+  width: 80%;
+  margin: auto;
+}
+
+h1 {
+  font-size: 28px;
+  text-shadow: 0 0 10px red;
+}
+
+#mensagem-final {
+  margin-top: 50px;
+  font-size: 20px;
+  color: crimson;
+  opacity: 0;
+  transition: opacity 2s;
+}
+
+#recomecar {
+  display: none;
+  margin-top: 20px;
+}
+
+button {
+  background: none;
+  color: red;
+  border: 1px solid red;
+  padding: 10px 20px;
+  font-size: 18px;
+  margin: 20px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background-color: red;
+  color: black;
+}
+
+  </style>
+</head>
+<body>
+  <div id="container">
+    <h1 id="pergunta">VOCÊ ESTÁ SOZINHO AGORA?</h1>
+    <div id="botoes">
+      <button onclick="responder('sim')">Sim</button>
+      <button onclick="responder('nao')">Não</button>
+    </div>
+    <div id="mensagem-final">VOCÊ DEVERIA TER ESCOLHIDO NÃO RESPONDER.</div>
+    <div id="recomecar">
+      <button onclick="window.location.reload()">Recomeçar</button>
+    </div>
+  </div>  <script>
+    const perguntas = [
+      "VOCÊ ESTÁ SOZINHO AGORA?",
+      "VOCÊ OUVIU ISSO TAMBÉM?",
+      "VOCÊ MORA SOZINHO?",
+      "VOCÊ ESTÁ MESMO ACORDADO?",
+      "TEM CERTEZA QUE NÃO É UM SONHO?",
+      "TEM ALGO ATRÁS DE VOCÊ?",
+      "VOCÊ DEIXOU A PORTA TRANCADA?",
+      "VOCÊ SRNTE QUE NÃO ESTÁ SOZINHO ?",
+      "VOCÊ QUER PARAR?",
+    ];
+
+    let indice = 0;
+
+    function responder(resposta) {
+      if (resposta === 'sim' && indice === 4) {
+        document.body.style.backgroundColor = "#440000";
+        document.getElementById("pergunta").textContent = "ELE ESTÁ ATRÁS DE VOCÊ.";
+        return;
+      }
+
+      indice++;
+      if (indice < perguntas.length) {
+        document.getElementById("pergunta").textContent = perguntas[indice];
+      } else {
+        document.getElementById("pergunta").textContent = "JÁ É TARDE DEMAIS.";
+        document.getElementById("botoes").style.display = "none";
+        const finalMsg = document.getElementById("mensagem-final");
+        finalMsg.style.opacity = 1;
+        document.getElementById("recomecar").style.display = "block";
+      }
+    }
+  </script></body>
+  </html>
