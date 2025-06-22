@@ -65,17 +65,26 @@ button:hover {
   </div>  <script>
     const perguntas = [
       "VOCÊ ESTÁ SOZINHO AGORA?",
+      "Você deixou a porta do quarto aberta?"
       "VOCÊ OUVIU ISSO TAMBÉM?",
-      "VOCÊ MORA SOZINHO?",
-      "VOCÊ ESTÁ MESMO ACORDADO?",
-      "TEM CERTEZA QUE NÃO É UM SONHO?",
+      "Você acabou de olhar para trás, não foi?",
+      "Seu coração acelerou agora?",
+      "Você escutou o barulho também?",
       "TEM ALGO ATRÁS DE VOCÊ?",
       "VOCÊ DEIXOU A PORTA TRANCADA?",
       "VOCÊ SRNTE QUE NÃO ESTÁ SOZINHO ?",
       "VOCÊ QUER PARAR?",
+      
     ];
 
     let indice = 0;
+
+    function responder(resposta) {
+      if (esperandoRespostaExtra) {
+        document.getElementById("pergunta").textContent = "VOCÊ ACREDITA QUE ESTOU TE OBSERVANDO?";
+        esperandoRespostaExtra = false;
+        return;
+      }
 
     function responder(resposta) {
       if (resposta === 'sim' && indice === 4) {
