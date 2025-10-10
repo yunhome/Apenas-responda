@@ -130,3 +130,142 @@ function startChat() {
 
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat Estilo Cartas Antigas</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+  body {
+    margin: 0;
+    font-family: 'Great Vibes', cursive;
+    background-color: #f3e0c4;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .container {
+    width: 450px;
+    background-color: #e4d1b9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+  }
+
+  #chat {
+    flex: 1;
+    background-color: #d4bfa3;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #a67c52;
+    overflow-y: auto;
+    margin-bottom: 10px;
+  }
+
+  .message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 80%;
+    font-size: 18px;
+    line-height: 1.4;
+    word-wrap: break-word;
+  }
+
+  .user {
+    background-color: #c49e6c;
+    color: #2c1600;
+    margin-left: auto;
+  }
+
+  .bot {
+    background-color: #e5d1b3;
+    color: #2c1600;
+  }
+
+  .input-area {
+    display: flex;
+    gap: 10px;
+  }
+
+  input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #a67c52;
+    font-family: 'Great Vibes', cursive;
+    font-size: 16px;
+  }
+
+  button {
+    padding: 10px 20px;
+    background-color: #a67c52;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-family: 'Great Vibes', cursive;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div id="chat"></div>
+  <div class="input-area">
+    <input type="text" id="userInput" placeholder="Escreva sua mensagem...">
+    <button onclick="sendMessage()">Enviar</button>
+  </div>
+</div>
+
+<script>
+const chat = document.getElementById('chat');
+
+function addMessage(text, sender = 'bot') {
+  const message = document.createElement('div');
+  message.className = 'message ' + sender;
+  message.innerText = text;
+  chat.appendChild(message);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function sendMessage() {
+  const input = document.getElementById('userInput');
+  const text = input.value.trim();
+  if(text === '') return;
+  
+  addMessage(text, 'user');
+  input.value = '';
+
+  // Resposta automática do bot
+  setTimeout(() => {
+    addMessage(generateBotReply(text), 'bot');
+  }, 700);
+}
+
+// Aqui você pode personalizar as respostas automáticas
+function generateBotReply(userText) {
+  const replies = [
+    "Que interessante...",
+    "Continue, por favor.",
+    "Hmm, não sei sobre isso.",
+    "Conte-me mais!",
+    "Isso soa misterioso..."
+  ];
+  return replies[Math.floor(Math.random() * replies.length)];
+}
+
+// Mensagem inicial
+addMessage("Olá! Este é o chat estilo cartas antigas. Escreva algo para começar.", 'bot');
+</script>
+
+</body>
+</html>
