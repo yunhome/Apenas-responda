@@ -75,72 +75,7 @@
     background-color: #e5d1b3;
     color: #2c1600;
   }
-</style>
-</head>
-<body>
-
-<div class="container">
-  <div id="form">
-    <h2>Preencha seus dados</h2>
-    <input type="text" id="name" placeholder="Nome">
-    <input type="text" id="nickname" placeholder="Apelido">
-    <input type="email" id="email" placeholder="E-mail">
-    <input type="tel" id="phone" placeholder="Telefone">
-    <input type="text" id="country" placeholder="País">
-    <button onclick="startChat()">Entrar no Chat</button>
-  </div>
-
-  <div id="chat"></div>
-</div>
-
-<script>
-function typeWriter(text, element, i = 0, callback = null) {
-  if(i < text.length) {
-    element.innerHTML += text.charAt(i);
-    i++;
-    setTimeout(() => typeWriter(text, element, i, callback), 50);
-  } else {
-    if(callback) callback();
-  }
-}
-
-function addMessage(text, sender = 'bot') {
-  const chat = document.getElementById('chat');
-  const message = document.createElement('div');
-  message.className = 'message ' + sender;
-  chat.appendChild(message);
-  chat.scrollTop = chat.scrollHeight;
-  typeWriter(text, message);
-}
-
-function startChat() {
-  const name = document.getElementById('name').value;
-  const nickname = document.getElementById('nickname').value;
-  if(!name || !nickname) {
-    alert("Por favor, preencha pelo menos Nome e Apelido!");
-    return;
-  }
-  document.getElementById('form').style.display = 'none';
-  const chat = document.getElementById('chat');
-  chat.style.display = 'block';
-  addMessage(`Olá ${nickname}, bem-vindo ao nosso chat antigo!`);
-  setTimeout(() => addMessage("É como escrever cartas à mão... mas online."), 1000);
-}
-</script>
-
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chat Estilo Cartas Antigas</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
-
-  body {
+body {
     margin: 0;
     font-family: 'Great Vibes', cursive;
     background-color: #f3e0c4;
@@ -217,6 +152,54 @@ function startChat() {
 </style>
 </head>
 <body>
+
+<div class="container">
+  <div id="form">
+    <h2>Preencha seus dados</h2>
+    <input type="text" id="name" placeholder="Nome">
+    <input type="text" id="nickname" placeholder="Apelido">
+    <input type="email" id="email" placeholder="E-mail">
+    <input type="tel" id="phone" placeholder="Telefone">
+    <input type="text" id="country" placeholder="País">
+    <button onclick="startChat()">Entrar no Chat</button>
+  </div>
+
+  <div id="chat"></div>
+</div>
+
+<script>
+function typeWriter(text, element, i = 0, callback = null) {
+  if(i < text.length) {
+    element.innerHTML += text.charAt(i);
+    i++;
+    setTimeout(() => typeWriter(text, element, i, callback), 50);
+  } else {
+    if(callback) callback();
+  }
+}
+
+function addMessage(text, sender = 'bot') {
+  const chat = document.getElementById('chat');
+  const message = document.createElement('div');
+  message.className = 'message ' + sender;
+  chat.appendChild(message);
+  chat.scrollTop = chat.scrollHeight;
+  typeWriter(text, message);
+}
+
+function startChat() {
+  const name = document.getElementById('name').value;
+  const nickname = document.getElementById('nickname').value;
+  if(!name || !nickname) {
+    alert("Por favor, preencha pelo menos Nome e Apelido!");
+    return;
+  }
+  document.getElementById('form').style.display = 'none';
+  const chat = document.getElementById('chat');
+  chat.style.display = 'block';
+  addMessage(`Olá ${nickname}, bem-vindo ao nosso chat antigo!`);
+  setTimeout(() => addMessage("É como escrever cartas à mão... mas online."), 1000);
+  {
 
 <div class="container">
   <div id="chat"></div>
